@@ -1,0 +1,3 @@
+{"level":"info","event":"backup completed"}
+{"level":"warning","event":"storage threshold reached"}
+{"level":"error","event":"scheduled job failed"}
