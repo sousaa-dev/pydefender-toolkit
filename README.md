@@ -1,38 +1,60 @@
 # PyDefender Toolkit
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white) ![Dependencies](https://img.shields.io/badge/dependencies-standard%20library-blue)
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white) ![Dependencies](https://img.shields.io/badge/Dependencies-Standard%20Library-green)
 
 ## 🇺🇸 English
 
-Lightweight local defensive utilities for file integrity, log reporting and inventory. No network connections or third-party dependencies.
+A lightweight Python toolkit for local defensive security operations: integrity verification, log severity reporting and file inventory. It is designed for reproducible learning and routine review using authorized local data. No external dependencies or network features.
 
 ## 🇧🇷 Português
 
-Ferramentas defensivas em Python para verificação de integridade, análise de registros e inventário local.
+Conjunto de utilitários defensivos para verificar integridade de arquivos, consolidar registros em formato JSON Lines e inventariar arquivos locais. A interface de linha de comando facilita tarefas recorrentes e o uso de exemplos sintéticos.
 
-### Project history / Histórico do projeto
+## Features / Funcionalidades
 
-Previously maintained in another personal account, this project has been revisited and updated for inclusion in my professional portfolio. Its migration to this repository consolidates my studies and practical development work in a dedicated professional profile.
+| Comando | Entrada | Saída |
+|---|---|---|
+| hash | Arquivo local | SHA-256 hexadecimal |
+| verify | Arquivo e referência confiável | MATCH ou MISMATCH |
+| log-summary | Arquivo JSONL | Contagens por nível e linhas inválidas |
+| inventory | Diretório | Nome, tamanho e data UTC dos arquivos imediatos |
 
-Anteriormente mantido em outra conta pessoal, este projeto foi revisado e atualizado para integrar meu portfólio profissional. Sua migração para este repositório consolida meus estudos e atividades práticas de desenvolvimento em um perfil dedicado à minha trajetória profissional.
-
-
-## Commands / Comandos
-
-| Command | Purpose |
-|---|---|
-| hash | Calculate SHA-256 |
-| verify | Compare against a trusted SHA-256 |
-| log-summary | Count severity labels in JSONL |
-| inventory | List immediate regular files |
+## Getting started
 
 ```bash
+git clone https://github.com/sousaa-dev/pydefender-toolkit.git
+cd pydefender-toolkit
+python pydefender.py --help
 python pydefender.py hash examples/events.jsonl
 python pydefender.py log-summary examples/events.jsonl
 python pydefender.py inventory examples
 python -m unittest discover -s tests
 ```
 
-Python 3.10+. Verification returns 1 for mismatch; invalid input returns 2.
+Python 3.10 ou superior. Não é necessário instalar bibliotecas externas.
 
-See [usage guide](docs/usage.md). Author: Pablo Sousa Ribeiro — [sousaa-dev](https://github.com/sousaa-dev).
+## Behavior and architecture
+
+- `pydefender.py`: CLI, funções de processamento e tratamento de erros.
+- `examples/`: registros sintéticos para demonstração.
+- `tests/`: testes unitários de hash, resumo de logs e inventário.
+- `docs/`: guias e limites operacionais.
+
+O código de saída 0 indica sucesso, 1 indica divergência de integridade, 2 indica entrada inválida ou falha de leitura. O resultado é exibido na saída padrão. O inventário não percorre subdiretórios nem segue links simbólicos. O resumo de registros conta níveis declarados, sem inferir incidentes.
+
+## Documentation
+
+- [Usage guide](docs/usage.md)
+- [Practical scenarios](docs/scenarios.md)
+
+## Roadmap
+
+Comparação de inventários, relatórios CSV e ampliação dos testes.
+
+## Project history / Histórico do projeto
+
+Previously maintained in another personal account, the project was revised and migrated to consolidate my professional portfolio.
+
+Anteriormente mantido em outra conta pessoal, o projeto foi revisado e migrado para consolidar meu portfólio profissional.
+
+**Autor:** Pablo Sousa Ribeiro — [sousaa-dev](https://github.com/sousaa-dev).
